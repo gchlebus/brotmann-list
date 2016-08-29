@@ -29,3 +29,7 @@ node_modules
 
 lib/
 data/
+
+# vim swap files
+*.swp
+*.swo
