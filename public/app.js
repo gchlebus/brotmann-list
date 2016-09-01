@@ -10,10 +10,14 @@ function addItem(item) {
         <div class="w3-container">${moment(item.createdAt).fromNow()}</div>
       </div>
       <div class="w3-col s1">
-	<i class="w3-closebtn w3-margin-right w3-xxlarge fa fa-times"></i>
+	<div class="w3-closebtn w3-margin-right w3-xxlarge fa fa-times"></div>
       </div>
     </li>`
   ); 
+}
+
+function removeItem(item) {
+  $('#' + item._id).remove();
 }
 
 var socket = io();
@@ -23,6 +27,7 @@ app.configure(feathers.hooks());
 
 var listitems = app.service('listitems');
 listitems.on('created', addItem);
+listitems.on('removed', removeItem);
 
 listitems.find().then(function(result) {
   result.data.forEach(addItem);
@@ -33,6 +38,14 @@ $('#add-button').on('click', function(event) {
   var itemText = input.val();
   if (itemText) {
     listitems.create({'text': itemText});
-    input.value = "";
+    input.val("");
   }
 });
+
+$('#list').ready(function() {
+  $('#list').on('click', '.w3-closebtn', function(event) {
+    var id = $(this).parent().parent().attr('id');
+    listitems.remove(id);
+  });
+});
+
