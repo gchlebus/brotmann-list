@@ -29,9 +29,18 @@ var listitems = app.service('listitems');
 listitems.on('created', addItem);
 listitems.on('removed', removeItem);
 
-listitems.find().then(function(result) {
-  result.data.forEach(addItem);
-});
+function populateList(skip) {
+  listitems.find({
+      query: {$skip: skip}
+    }).then(function(result){
+    console.log(result);
+    result.data.forEach(addItem);
+    if (result.data.length !== 0) {
+      populateList(result.skip + result.data.length);
+    }
+  });
+}
+populateList(0);
 
 $('#add-button').on('click', function(event) {
   var input = $('#item-text');
