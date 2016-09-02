@@ -1,5 +1,7 @@
 'use strict';
 
+const tolowercase = require('./tolowercase');
+
 const createdat = require('./createdat');
 
 const globalHooks = require('../../../hooks');
@@ -10,7 +12,7 @@ exports.before = {
   all: [],
   find: [],
   get: [],
-  create: [createdat()],
+  create: [createdat(), tolowercase()],
   update: [],
   patch: [],
   remove: []

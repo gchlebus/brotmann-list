@@ -46,7 +46,7 @@ function isPresentInDB(itemText) {
   return new Promise(function(resolve, reject){
     listitems.find({
         query: {
-          text: { $in: [itemText, itemText.toLowerCase(), itemText.toUpperCase()] }
+          text: itemText.toLowerCase()
         } 
       }).then(function(result){
         if (result.data.length === 0){
