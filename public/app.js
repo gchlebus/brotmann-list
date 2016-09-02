@@ -3,7 +3,7 @@
 var itemCount = 0;
 
 function addItem(item) {
-  $('#list').append(
+  $('#list').prepend(
     `<li id="${item._id}" class="w3-row">
       <div class="w3-col s11">
         <div class="w3-container w3-xlarge">${item.text}</div>
@@ -31,12 +31,16 @@ listitems.on('removed', removeItem);
 
 function populateList(skip) {
   listitems.find({
-      query: {$skip: skip}
+      query: {
+        $skip: skip,
+        $sort: { createdAt: 1 }
+      }
     }).then(function(result){
     result.data.forEach(addItem);
     if (result.data.length !== 0) {
       populateList(result.skip + result.data.length);
     }
+
   });
 }
 populateList(0);
