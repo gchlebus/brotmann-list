@@ -1,0 +1,27 @@
+html {
+  height: 100vh;
+}
+
+body {
+  height: 100%;
+}
+
+header {
+  height: 10vh;
+}
+
+.brotmann-main {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.brotmann-list {
+  overflow: auto;
+  flex: 1 1 auto;
+}
+
+.brotmann-form {
+  flex: 0 0 auto;
+}

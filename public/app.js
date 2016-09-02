@@ -63,7 +63,8 @@ function isPresentInDB(itemText) {
   });
 }
 
-$('#add-button').on('click', function(event) {
+function onAddItem(){
+  console.log('onAddItem');
   var input = $('#item-text');
   var itemText = input.val();
   if (itemText) {
@@ -75,6 +76,14 @@ $('#add-button').on('click', function(event) {
     });
   }
   input.val("");
+}
+
+$('#add-button').on('click', onAddItem);
+$('#item-text').keyup(function(event){
+  if(event.keyCode == 13){
+    console.log('siemno');
+    onAddItem();
+  }
 });
 
 $('#list').ready(function() {

@@ -3,18 +3,23 @@
 <title>brotmann list</title>
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-<body>
+<link rel="stylesheet" href="main.css">
+<body class="brotmann-body">
   <header class="w3-container w3-blue">
     <h2 class="w3-text-black w3-center">brotmann list</h2>
   </header>
-  <main>
-    <ul id="list" class="w3-ul w3-card-4">
+  <main class="brotmann-main">
+    <ul id="list" class="w3-ul w3-card-4 brotmann-list">
     </ul>
 
-    <div class="w3-container w3-bottom">
-      <input id="item-text" class="w3-input w3-border" type="text">
+    <!--<div class="w3-container w3-bottom">
+      <input id="item-text" class="w3-input w3-border" type="text" autocorrect="off">
       <button id="add-button" class="w3-btn-block w3-blue">add item</button>
-    </div>
+    </div>-->
+    <form class="w3-container w3-margin-top w3-margin-bottom brotmann-form" onsubmit="onAddItem()">
+      <input id="item-text" class="w3-input w3-border" type="text" autocorrect="off">
+      <input type="submit" class="w3-btn-block w3-blue" value="dodaj">
+    </form>
   </main>
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
