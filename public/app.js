@@ -33,7 +33,6 @@ function populateList(skip) {
   listitems.find({
       query: {$skip: skip}
     }).then(function(result){
-    console.log(result);
     result.data.forEach(addItem);
     if (result.data.length !== 0) {
       populateList(result.skip + result.data.length);
@@ -42,13 +41,36 @@ function populateList(skip) {
 }
 populateList(0);
 
+// returns id if present, null otherwise
+function isPresentInDB(itemText) {
+  return new Promise(function(resolve, reject){
+    listitems.find({
+        query: {
+          text: { $in: [itemText, itemText.toLowerCase(), itemText.toUpperCase()] }
+        } 
+      }).then(function(result){
+        if (result.data.length === 0){
+          resolve(null);
+        }
+        else{
+          resolve(result.data[0]._id);
+        }
+    });
+  });
+}
+
 $('#add-button').on('click', function(event) {
   var input = $('#item-text');
   var itemText = input.val();
   if (itemText) {
-    listitems.create({'text': itemText});
-    input.val("");
+    isPresentInDB(itemText).then(function(id){
+      if (id){
+        listitems.remove(id);
+      }
+      listitems.create({'text': itemText});
+    });
   }
+  input.val("");
 });
 
 $('#list').ready(function() {
