@@ -22,6 +22,7 @@ header {
 .brotmann-list {
   overflow: auto;
   flex: 1 1 auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .brotmann-form {

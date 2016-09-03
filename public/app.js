@@ -64,7 +64,6 @@ function isPresentInDB(itemText) {
 }
 
 function onAddItem(){
-  console.log('onAddItem');
   var input = $('#item-text');
   var itemText = input.val();
   if (itemText) {
@@ -76,6 +75,7 @@ function onAddItem(){
     });
   }
   input.val("");
+  input.focus();
 }
 
 $('#add-button').on('click', onAddItem);
