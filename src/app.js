@@ -17,8 +17,9 @@ const Sequelize = require('sequelize');
 
 const app = feathers();
 
-const sequelize = new Sequelize(app.get('databasename'), app.get('user'), app.get('password'), {
-  host: app.get('databaseurl'),
+app.set('databaseurl', (process.env.DATABASE_URL || 'postgres://gchlebus@localhost:5432/gchlebus'));
+console.log("URL", app.get('databaseurl'));
+const sequelize = new Sequelize(app.get('databaseurl'), {
   dialect: 'postgres',
   pool: {
     max: 5,
