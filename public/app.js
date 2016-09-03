@@ -6,8 +6,8 @@ function addItem(item) {
   $('#list').prepend(
     `<li id="${item._id}" class="w3-row">
       <div class="w3-col s11">
-        <div class="w3-container w3-xlarge">${item.text}</div>
-        <div class="w3-container">${moment(item.createdAt).fromNow()}</div>
+        <div class="w3-container w3-medium">${item.text}</div>
+        <div class="w3-container w3-small w3-text-grey">${moment(item.createdAt).fromNow()}</div>
       </div>
       <div class="w3-col s1">
 	<div class="w3-closebtn w3-margin-right w3-xxlarge fa fa-times"></div>
