@@ -4,7 +4,7 @@ var itemCount = 0;
 
 function addItem(item) {
   $('#list').prepend(
-    `<li id="${item._id}" class="w3-row">
+    `<li id="${item.id}" class="w3-row">
       <div class="w3-col s11">
         <div class="w3-container w3-medium">${item.text}</div>
         <div class="w3-container w3-small w3-text-grey">${moment(item.createdAt).fromNow()}</div>
@@ -17,7 +17,7 @@ function addItem(item) {
 }
 
 function removeItem(item) {
-  $('#' + item._id).remove();
+  $('#' + item.id).remove();
 }
 
 var socket = io();
