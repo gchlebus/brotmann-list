@@ -13,8 +13,21 @@ const bodyParser = require('body-parser');
 const socketio = require('feathers-socketio');
 const middleware = require('./middleware');
 const services = require('./services');
+const Sequelize = require('sequelize');
+
+const sequelize = new Sequelize('gchlebus', 'gchlebus', '', {
+  host: 'localhost',
+  dialect: 'postgres',
+  pool: {
+    max: 5,
+    min: 0,
+    idle: 10000
+  }
+});
 
 const app = feathers();
+
+app.set('sequelize', sequelize);
 
 app.configure(configuration(path.join(__dirname, '..')));
 
