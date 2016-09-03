@@ -3,6 +3,7 @@
 var itemCount = 0;
 
 function addItem(item) {
+  itemCount++;
   $('#list').prepend(
     `<li id="${item.id}" class="w3-row">
       <div class="w3-col s11">
@@ -14,11 +15,18 @@ function addItem(item) {
       </div>
     </li>`
   ); 
+  updateItemCount();
 }
 
 function removeItem(item) {
+  itemCount--;
   $('#' + item.id).remove();
+  updateItemCount();
 }
+
+function updateItemCount() {
+  $('#itemCount').text(itemCount);
+};
 
 var socket = io();
 var app = feathers();
