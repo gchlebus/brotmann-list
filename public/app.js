@@ -63,7 +63,11 @@ function isPresentInDB(itemText) {
   });
 }
 
-function onAddItem(){
+$('.brotmann-form').submit(function(event){
+  event.preventDefault();
+});
+
+function onAddItem(event){
   var input = $('#item-text');
   var itemText = input.val();
   if (itemText) {
@@ -81,7 +85,6 @@ function onAddItem(){
 $('#add-button').on('click', onAddItem);
 $('#item-text').keyup(function(event){
   if(event.keyCode == 13){
-    console.log('siemno');
     onAddItem();
   }
 });
