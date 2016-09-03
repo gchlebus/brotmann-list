@@ -25,12 +25,12 @@ var app = feathers();
 app.configure(feathers.socketio(socket));
 app.configure(feathers.hooks());
 
-var listitems = app.service('listitems');
-listitems.on('created', addItem);
-listitems.on('removed', removeItem);
+var items = app.service('items');
+items.on('created', addItem);
+items.on('removed', removeItem);
 
 function populateList(skip) {
-  listitems.find({
+  items.find({
       query: {
         $skip: skip,
         $sort: { createdAt: 1 }
@@ -48,7 +48,7 @@ populateList(0);
 // returns id if present, null otherwise
 function isPresentInDB(itemText) {
   return new Promise(function(resolve, reject){
-    listitems.find({
+    items.find({
         query: {
           text: itemText.toLowerCase()
         } 
@@ -73,9 +73,9 @@ function onAddItem(event){
   if (itemText) {
     isPresentInDB(itemText).then(function(id){
       if (id){
-        listitems.remove(id);
+        items.remove(id);
       }
-      listitems.create({'text': itemText});
+      items.create({'text': itemText});
     });
   }
   input.val("");
@@ -92,7 +92,7 @@ $('#item-text').keyup(function(event){
 $('#list').ready(function() {
   $('#list').on('click', '.w3-closebtn', function(event) {
     var id = $(this).parent().parent().attr('id');
-    listitems.remove(id);
+    items.remove(id);
   });
 });
 

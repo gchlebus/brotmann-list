@@ -15,8 +15,10 @@ const middleware = require('./middleware');
 const services = require('./services');
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('gchlebus', 'gchlebus', '', {
-  host: 'localhost',
+const app = feathers();
+
+const sequelize = new Sequelize(app.get('databasename'), app.get('user'), app.get('password'), {
+  host: app.get('databaseurl'),
   dialect: 'postgres',
   pool: {
     max: 5,
@@ -25,7 +27,6 @@ const sequelize = new Sequelize('gchlebus', 'gchlebus', '', {
   }
 });
 
-const app = feathers();
 
 app.set('sequelize', sequelize);
 
