@@ -24,7 +24,9 @@ const sequelize = new Sequelize(app.get('databasename'), app.get('user'), app.ge
     max: 5,
     min: 0,
     idle: 10000
-  }
+  },
+  native: true,
+  ssl: true
 });
 
 
