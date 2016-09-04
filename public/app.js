@@ -11,7 +11,7 @@ function addItem(item) {
         <div class="w3-container w3-small w3-text-grey">${moment(item.createdAt).fromNow()}</div>
       </div>
       <div class="w3-col s1">
-	<div class="w3-closebtn w3-margin-right w3-xxlarge fa fa-times"></div>
+	<div class="w3-closebtn w3-margin-right w3-xxlarge">x</div>
       </div>
     </li>`
   ); 
@@ -25,7 +25,7 @@ function removeItem(item) {
 }
 
 function updateItemCount() {
-  $('#itemCount').text(itemCount);
+  $('#itemCount').text('(' + itemCount + ')');
 };
 
 var socket = io();
