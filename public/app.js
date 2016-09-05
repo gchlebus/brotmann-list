@@ -5,7 +5,7 @@ var itemCount = 0;
 function addItem(item) {
   itemCount++;
   $('#list').prepend(
-    `<li id="${item.id}" class="w3-row w3-hover-light-grey">
+    `<li id="${item.id}" class="w3-row">
       <div class="w3-col s11">
         <div class="w3-container w3-medium">${item.text}</div>
         <div class="w3-container w3-small w3-text-grey">${moment(item.createdAt).fromNow()}</div>
