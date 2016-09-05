@@ -28,6 +28,8 @@ function updateItemCount() {
   $('#itemCount').text('(' + itemCount + ')');
 };
 
+moment.locale('pl');
+
 var socket = io();
 var app = feathers();
 app.configure(feathers.socketio(socket));
