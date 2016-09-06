@@ -48,4 +48,17 @@ app.use(compress())
   .configure(services)
   .configure(middleware);
 
+
+var lists = app.service('lists');
+lists.find({
+  query: {}
+}).then(function(result){
+  console.log(result);
+  if (result.total == 0){
+    lists.create({
+      title: "list"
+    });
+  }
+});
+
 module.exports = app;
