@@ -36,6 +36,7 @@ app.configure(feathers.socketio(socket));
 app.configure(feathers.hooks());
 
 var items = app.service('items');
+var lists = app.service('lists');
 items.on('created', addItem);
 items.on('removed', removeItem);
 
@@ -54,6 +55,25 @@ function populateList(skip) {
   });
 }
 populateList(0);
+
+function getActiveList(){
+  return new Promise(function(resolve, reject){
+    lists.find({
+      query: { $limit: 1 }
+    }).then(function(result){
+      if (result.data.length == 0){
+        reject();
+      }
+      else{
+        resolve(result.data[0]);
+      }
+    });  
+  });
+}
+
+getActiveList().then(function(list){
+  $('#active-list').text(list.title);
+});
 
 // returns id if present, null otherwise
 function isPresentInDB(itemText) {
